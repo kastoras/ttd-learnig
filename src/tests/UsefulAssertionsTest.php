@@ -8,14 +8,14 @@ class UsefulAssertionsTest extends TestCase
   {
     $expected = 'test';
 
-    $result = 'TEST';
+    $result = 'test';
 
     $this->assertSame($expected, $result);
   }
 
   public function testAssertEquals()
   {
-    $expected = 1;
+    $expected = 2;
 
     $result = 2;
 
@@ -24,12 +24,12 @@ class UsefulAssertionsTest extends TestCase
 
   public function testAssertEmpty()
   {
-    $this->assertEmpty(['test']);
+    $this->assertEmpty([]);
   }
 
   public function testAssertNull()
   {
-    $this->assertNull('test');
+    $this->assertNull(null);
   }
 
   public function testAssertGreaterThan()
@@ -43,50 +43,50 @@ class UsefulAssertionsTest extends TestCase
 
   public function testAssertFalse()
   {
-    $this->assertFalse(true);
+    $this->assertFalse(false);
   }
 
   public function testAssertTrue()
   {
-    $this->assertTrue(false);
+    $this->assertTrue(true);
   }
 
   public function testAssertCount()
   {
-    $this->assertCount(3, [1, 2]);
+    $this->assertCount(3, [1, 2, 1]);
   }
 
   public function testAssertContains()
   {
-    $this->assertContains(3, [1, 2]);
+    $this->assertContains(3, [1, 2, 3]);
   }
 
   public function testAssertStringContainsString()
   {
     $search = 'aaa';
 
-    $string = 'aaa';
+    $string = 'aaaasdasaada';
 
     $this->assertStringContainsString($search, $string);
   }
 
   public function testAssertInstanceOf()
   {
-    $this->assertInstanceOf(RuntimeException::class, new Exception());
+    $this->assertInstanceOf(RuntimeException::class, new RuntimeException());
   }
 
   public function testAssertArrayHasKey()
   {
-    $this->assertArrayHasKey('key1', ['key0' => 'aa']);
+    $this->assertArrayHasKey('key1', ['key1' => 'aa']);
   }
 
   public function testAssertDirectoryIsWritable()
   {
-    $this->assertDirectoryIsNotWritable('/pat/to/dir');
+    $this->assertDirectoryIsNotWritable('notWritable');
   }
 
   public function testAssertFileIsWritable()
   {
-    $this->assertFileIsWritable('/path/to/file');
+    $this->assertFileIsWritable('writableFile');
   }
 }
