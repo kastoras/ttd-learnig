@@ -1,7 +1,7 @@
 version: "3.8"
 services:
   web:
-    container_name: sharedmodules.test
+    container_name: ttd-learnig.test
     build:
       context: .
       dockerfile: dockerfiles/apache.dockerfile
@@ -10,9 +10,9 @@ services:
     volumes:
       - ./src:/var/www/html/
       - ./conf/custom.ini:/usr/local/etc/php/conf.d/custom.ini
-#      - /var/www/html/vendor
-    #depends_on:
-      #- mysql
+  #      - /var/www/html/vendor
+  #depends_on:
+  #- mysql
   mysql:
     container_name: "db_sharedmodules"
     image: mysql:8
@@ -42,7 +42,7 @@ services:
       dockerfile: dockerfiles/php.dockerfile
     volumes:
       - ./src:/var/www/html
-    entrypoint: ["php", "/var/www/html/vendor/bin/phpunit"]    
+    entrypoint: ["php", "/var/www/html/vendor/bin/phpunit"]
   adminer:
     image: adminer
     restart: always
