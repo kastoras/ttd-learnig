@@ -1,5 +1,12 @@
 <?php
 
+class Database{
+    public function getEmailAndLastName()
+    {
+        echo 'real db touch';
+    }
+}
+
 class User{
 
     private $name;
@@ -7,6 +14,8 @@ class User{
     private $last_name;
 
     protected $name2;
+    
+    private $db;
 
     public function __construct($name, $last_name) {
         $this->name = ucfirst($name);
@@ -16,6 +25,12 @@ class User{
 
     public function getFullName()
     {
+        return $this->name.' '.$this->last_name;
+    }
+
+    public function getFullNameFromDB()
+    {
+        $this->db->getEmailAndLastName();
         return $this->name.' '.$this->last_name;
     }
 }
