@@ -61,4 +61,36 @@ class UserTest extends TestCase
         $this->assertSame('Nikos Anthimidis', $user->getFullName());
     }
 
+    public function testPasswordHashed()
+    {
+        $user = new User('nikos', 'anthimidis');
+
+        $expected = 'Password hashed';
+
+        $phpunit = $this;
+
+        $assertClosure = function() use ($expected, $phpunit){
+            $phpunit->assertSame($expected, $this->hashPassword());
+        };
+
+        $executeAssertClosure = $assertClosure->bindTo($user, get_class($user));
+
+        $executeAssertClosure();        
+    }
+
+    public function testPasswordHashed2()
+    {
+        $user = new class('nikos', 'anthimidis') extends User {
+            public function getHashedPassword()
+            {
+                return $this->hashPasswordProtected();
+            }
+
+        };
+
+        $expected = 'Password hashed';
+
+        $this->assertSame($expected, $user->getHashedPassword());
+    }
+
 }

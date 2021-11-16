@@ -33,4 +33,14 @@ class User{
         $this->db->getEmailAndLastName();
         return $this->name.' '.$this->last_name;
     }
+
+    private function hashPassword()
+    {
+        return 'Password hashed';
+    }
+
+    protected function hashPasswordProtected()
+    {
+        return 'Password hashed';
+    }    
 }
