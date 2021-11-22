@@ -4,6 +4,9 @@ use PHPUnit\Framework\TestCase;
 
 class UserTest extends TestCase
 {
+
+    use CustomAssertionTrait;
+
     public function testValidUserName()
     {
         $user = new User('nikos', 'anthimidis');
@@ -93,4 +96,14 @@ class UserTest extends TestCase
         $this->assertSame($expected, $user->getHashedPassword());
     }
 
+    public function testCustomDataStracture()
+    {
+        $data = [
+            'user' => 'Dolar',
+            'email'=> 'asdsa@asdsa.gr',
+            'age'  => 10
+        ];
+
+        $this->assertArrayData($data);
+    }
 }
