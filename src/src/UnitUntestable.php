@@ -33,26 +33,40 @@ class DataSource {
     }
 }
 
+class RandomNumber {
+
+    public function getBetween($first,$last)
+    {
+        return mt_rand($first,$last);
+    }
+
+}
 
 /**
  * This is the class that you should refactor so that the entire internal logic is fully covered by unit test. You must not change the class functionality. It must work 100% the same.
  */
 class UnitUntestable {
 
+    private $dataSource;
+    private $randomNumber;
+
+    public function __construct($dataSource)
+    {
+        $this->dataSource = $dataSource;
+    }
+
+    public function setRandomNamber($number)
+    {
+        $this->randomNumber = $number;
+    }
+
     public function getRandomQoute()
     {
-        $number = $this->getRadomNum();
-
-        $body = $this->getBody($number);
-        $person = $this->getPerson($number);
+        $body = $this->getBody($this->randomNumber);
+        $person = $this->getPerson($this->randomNumber);
         $quote = $this->getQuote($person);
 
         return $body.$person.': '.$quote;
-    }
-
-    public function getRadomNum()
-    {
-        return mt_rand(0,2);
     }
 
     public function getPerson($number)
@@ -88,13 +102,17 @@ class UnitUntestable {
     }
 
     public function getQuote($person)
-    {
-        $quotes = new DataSource;
-        return $quotes->fetchQuote($person);
+    {        
+        return $this->dataSource->fetchQuote($person);
     }
 }
 
 
 // example usage:
-$obj = new UnitUntestable();
-echo $obj->getRandomQoute();
+/*$obj = new UnitUntestable(new DataSource());
+
+$number = (new RandomNumber())->getBetween(1,3);
+
+$obj->setRandomNamber($number);
+
+echo $obj->getRandomQoute();*/
